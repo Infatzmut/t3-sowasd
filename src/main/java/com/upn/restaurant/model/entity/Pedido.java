@@ -1,6 +1,6 @@
 package com.upn.restaurant.model.entity;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,9 +9,16 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 import javax.persistence.Table;
+
+
+
+
 
 @Entity
 @Table(name = "pedidos")
@@ -24,19 +31,33 @@ public class Pedido {
 	@Column(name = "descripcion", length = 100)
 	private String descripcion;
 
-	@OneToMany(mappedBy = "pedidoS", fetch = FetchType.LAZY)
-	private List<DetallePedido> detallepedidos;
-
-	@OneToOne(mappedBy = "pedidos")
+	 @ManyToOne(fetch = FetchType.LAZY)
+	 @JoinColumn(name = "personal_id")
 	private Personal personales;
+	
+	 @OneToMany(mappedBy = "pedidos")
+		private List<DetallePedido> detallepedidos;
+	 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cliente_id")
+		private Cliente cliente;
+	
 
-	public Pedido() {
-		detallepedidos = new ArrayList<>();
+
+	public List<DetallePedido> getDetallepedidos() {
+		return detallepedidos;
 	}
 
-	public void addPedido(DetallePedido detallepedido) {
-		detallepedido.setPedidos(this);
-		this.detallepedidos.add(detallepedido);
+	public void setDetallepedidos(List<DetallePedido> detallepedidos) {
+		this.detallepedidos = detallepedidos;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public Integer getId() {
@@ -55,14 +76,6 @@ public class Pedido {
 		this.descripcion = descripcion;
 	}
 
-	public List<DetallePedido> getDetallepedidos() {
-		return detallepedidos;
-	}
-
-	public void setDetallepedidos(List<DetallePedido> detallepedidos) {
-		this.detallepedidos = detallepedidos;
-	}
-
 	public Personal getPersonales() {
 		return personales;
 	}
@@ -70,5 +83,14 @@ public class Pedido {
 	public void setPersonales(Personal personales) {
 		this.personales = personales;
 	}
+
+	public List<DetallePedido> getDetallepedido() {
+		return detallepedidos;
+	}
+
+	public void setDetallepedido(List<DetallePedido> detallepedido) {
+		this.detallepedidos = detallepedido;
+	}
+
 
 }
