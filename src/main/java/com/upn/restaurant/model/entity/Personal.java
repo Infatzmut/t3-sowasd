@@ -1,10 +1,15 @@
 package com.upn.restaurant.model.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -26,11 +31,12 @@ public class Personal {
 	@Column(name = "descrip", length = 30)
 	private String descripcion;
 
-	@OneToOne(mappedBy = "personal")
+	@OneToOne
+	@JoinColumn(name= "usuario_id")
 	private Usuario usuario;
 
-	@OneToOne(mappedBy = "personal")
-	private Pedido pedido;
+	@OneToMany(mappedBy = "personales", fetch = FetchType.LAZY)
+	private List<Pedido> pedidos;
 
 	public Integer getId() {
 		return id;
@@ -72,11 +78,12 @@ public class Personal {
 		this.usuario = usuario;
 	}
 
-	public Pedido getPedido() {
-		return pedido;
+	public List<Pedido> getPedidos() {
+		return pedidos;
 	}
 
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
+
 }

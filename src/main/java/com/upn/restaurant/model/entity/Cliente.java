@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -24,19 +25,37 @@ public class Cliente {
 	@Column(name = "nombre", length = 80)
 	private String nombre;
 	
-	@OneToMany(mappedBy = "clientes", fetch = FetchType.LAZY)
-	private List<Plato> platos;
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+	private List<Pedido> pedidos;
 	
-	@OneToOne(mappedBy = "clientes")
-	private Usuario usuarios;
+	@OneToOne
+	@JoinColumn(name= "cliente_id")
+	private Usuario usuario;
 	
 	public Cliente() {
-		platos = new ArrayList<>();
+		pedidos = new ArrayList<>();
 	}
 	
-	public void addPlato(Plato plato) {
-		plato.setCliente(this);
-		this.platos.add(plato);
+	public void addPedido(Pedido pedido) {
+		pedido.setCliente(this);
+		this.pedidos.add(pedido);
+	}
+
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Integer getId() {
@@ -55,22 +74,9 @@ public class Cliente {
 		this.nombre = nombre;
 	}
 
-	public List<Plato> getPlatos() {
-		return platos;
-	}
 
-	public void setPlatos(List<Plato> platos) {
-		this.platos = platos;
-	}
 
-	public Usuario getUsuarios() {
-		return usuarios;
-	}
 
-	public void setUsuarios(Usuario usuarios) {
-		this.usuarios = usuarios;
-	}
-	
 	
 	
 

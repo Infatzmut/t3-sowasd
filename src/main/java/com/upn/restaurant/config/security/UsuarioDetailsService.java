@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 import com.upn.restaurant.model.entity.Usuario;
 import com.upn.restaurant.model.repository.UsuarioRepository;
 
-
-
 @Service
 public class UsuarioDetailsService implements UserDetailsService{
 
@@ -30,3 +28,4 @@ public class UsuarioDetailsService implements UserDetailsService{
 		throw new UsernameNotFoundException("Invalid User");
 	}
 }
+

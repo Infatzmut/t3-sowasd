@@ -11,7 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "users")
@@ -40,6 +43,13 @@ public class Usuario {
     
     @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)    
     private List<Authority> authorities;
+
+    @OneToOne(mappedBy = "usuario")
+    private Personal personal;
+    
+    @OneToOne(mappedBy = "usuario")
+    private Cliente cliente;
+    
 
 	public Usuario() {
 		this.enable = true;
@@ -75,6 +85,7 @@ public class Usuario {
 		this.username = username;
 	}
 
+
 	public String getPassword() {
 		return password;
 	}
@@ -87,6 +98,15 @@ public class Usuario {
 		return enable;
 	}
 
+	public void setPersonal(Personal personal) {
+		this.personal = personal;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 	public void setEnable(boolean enable) {
 		this.enable = enable;
 	}

@@ -1,4 +1,5 @@
 package com.upn.restaurant.config.security;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -74,5 +75,10 @@ public class UsuarioDetails implements UserDetails{
 	public String getCargo() {
 		return this.usuario.getCargo();
 	}
+
+	public Long getId() {
+		return this.usuario.getId();
+	}
+
 
 }

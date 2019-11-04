@@ -49,6 +49,5 @@ public class Authority {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
- 
-    
 }
+
