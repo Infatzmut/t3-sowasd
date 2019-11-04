@@ -3,31 +3,31 @@ package com.upn.restaurant.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import com.upn.restaurant.model.entity.Cliente;
-import com.upn.restaurant.service.ClienteService;
+import com.upn.restaurant.model.entity.DetallePedido;
+import com.upn.restaurant.service.DetallePedidoService;
 
-public class ClienteServiceImpl implements ClienteService {
+public class DetallePedidoServiceImpl implements DetallePedidoService {
 
 	@Override
-	public List<Cliente> findAll() throws Exception {
+	public List<DetallePedido> findAll() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Optional<Cliente> findById(Integer id) throws Exception {
+	public Optional<DetallePedido> findById(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Cliente save(Cliente entity) throws Exception {
+	public DetallePedido save(DetallePedido entity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Cliente update(Cliente entity) throws Exception {
+	public DetallePedido update(DetallePedido entity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
