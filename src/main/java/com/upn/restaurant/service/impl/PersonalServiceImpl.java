@@ -6,55 +6,54 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.upn.restaurant.model.entity.Cliente;
-import com.upn.restaurant.model.repository.ClienteRepository;
-import com.upn.restaurant.service.ClienteService;
+import com.upn.restaurant.model.entity.Personal;
+import com.upn.restaurant.model.repository.PersonalRepository;
+import com.upn.restaurant.service.PersonalService;
 
-public class ClienteServiceImpl implements ClienteService {
+public class PersonalServiceImpl implements PersonalService {
 
 	@Autowired
-	private ClienteRepository clienteRepository;
-	
+	private PersonalRepository personalRepository;
 	@Override
 	@Transactional(readOnly = true)
-	public List<Cliente> findAll() throws Exception {
+	public List<Personal> findAll() throws Exception {
 		// TODO Auto-generated method stub
-		return clienteRepository.findAll();
+		return personalRepository.findAll();
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Cliente> findById(Integer id) throws Exception {
+	public Optional<Personal> findById(Integer id) throws Exception {
 		// TODO Auto-generated method stub
-		return clienteRepository.findById(id);
+		return personalRepository.findById(id);
 	}
 
 	@Override
 	@Transactional
-	public Cliente save(Cliente entity) throws Exception {
+	public Personal save(Personal entity) throws Exception {
 		// TODO Auto-generated method stub
-		return clienteRepository.save(entity);
+		return personalRepository.save(entity);
 	}
 
 	@Override
 	@Transactional
-	public Cliente update(Cliente entity) throws Exception {
+	public Personal update(Personal entity) throws Exception {
 		// TODO Auto-generated method stub
-		return clienteRepository.save(entity);
+		return personalRepository.save(entity);
 	}
 
 	@Override
 	@Transactional
 	public void deleteById(Integer id) throws Exception {
 		// TODO Auto-generated method stub
-		clienteRepository.deleteById(id);
+		personalRepository.deleteById(id);
 	}
 
 	@Override
 	@Transactional
 	public void deleteAll() throws Exception {
 		// TODO Auto-generated method stub
-		clienteRepository.deleteAll();
+		personalRepository.deleteAll();
 	}
-	
+
 }

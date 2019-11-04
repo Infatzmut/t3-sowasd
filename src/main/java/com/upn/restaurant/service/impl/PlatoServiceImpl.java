@@ -6,55 +6,55 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.upn.restaurant.model.entity.Cliente;
-import com.upn.restaurant.model.repository.ClienteRepository;
-import com.upn.restaurant.service.ClienteService;
+import com.upn.restaurant.model.entity.Plato;
+import com.upn.restaurant.model.repository.PlatoRepository;
+import com.upn.restaurant.service.PlatoService;
 
-public class ClienteServiceImpl implements ClienteService {
+public class PlatoServiceImpl implements PlatoService {
 
 	@Autowired
-	private ClienteRepository clienteRepository;
+	private PlatoRepository platoRepository;
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Cliente> findAll() throws Exception {
+	public List<Plato> findAll() throws Exception {
 		// TODO Auto-generated method stub
-		return clienteRepository.findAll();
+		return platoRepository.findAll();
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Cliente> findById(Integer id) throws Exception {
+	public Optional<Plato> findById(Integer id) throws Exception {
 		// TODO Auto-generated method stub
-		return clienteRepository.findById(id);
+		return platoRepository.findById(id);
 	}
 
 	@Override
 	@Transactional
-	public Cliente save(Cliente entity) throws Exception {
+	public Plato save(Plato entity) throws Exception {
 		// TODO Auto-generated method stub
-		return clienteRepository.save(entity);
+		return platoRepository.save(entity);
 	}
 
 	@Override
 	@Transactional
-	public Cliente update(Cliente entity) throws Exception {
+	public Plato update(Plato entity) throws Exception {
 		// TODO Auto-generated method stub
-		return clienteRepository.save(entity);
+		return platoRepository.save(entity);
 	}
 
 	@Override
 	@Transactional
 	public void deleteById(Integer id) throws Exception {
 		// TODO Auto-generated method stub
-		clienteRepository.deleteById(id);
+		platoRepository.deleteById(id);
 	}
 
 	@Override
 	@Transactional
 	public void deleteAll() throws Exception {
 		// TODO Auto-generated method stub
-		clienteRepository.deleteAll();
+		platoRepository.deleteAll();
 	}
-	
+
 }
