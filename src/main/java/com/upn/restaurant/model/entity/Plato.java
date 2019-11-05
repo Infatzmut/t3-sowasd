@@ -33,7 +33,7 @@ public class Plato {
 	///
 	
 	 @OneToMany(mappedBy = "pedidos")
-		private List<DetallePedido> detallepedidos;
+	private List<DetallePedido> detallepedidos;
 
 	public Integer getId() {
 		return id;
@@ -66,6 +66,16 @@ public class Plato {
 
 	public void setDetallepedidos(List<DetallePedido> detallepedidos) {
 		this.detallepedidos = detallepedidos;
+	}
+
+	public void setPedido(Pedido pedido) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Cliente getPedido() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
