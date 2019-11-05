@@ -7,10 +7,10 @@
 
 	<div class="container">
 
-		<h1>Lista de Pedido</h1>
+		<h1>Lista de Plato</h1>
 
 		<div class="card text-center">
-			<div class="card-header">Lista de pedidos</div>
+			<div class="card-header">Lista de platos</div>
 			<div class="card-body">
 				
 				<div th:if="${dangerDel}" class="alert alert-danger" role="alert">
@@ -20,25 +20,25 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th scope="col">#</th>
-							<th scope="col">Descripcion</th>
-							<th scope="col">Plato</th>
+							<th scope="col">Id:</th>
+							<th scope="col">Descripcion:</th>
+							<th scope="col">Precio:</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
-					<tbody th:each="pedido: ${pedidos}">
+					<tbody th:each="plato: ${platos}">
 						<tr>
-							<th scope="row" th:text="${pedido.id}">1</th>
-							<td th:text="${pedido.descripcion}">Mark</td>
-							<td th:text="${pedido.plato.nombre}">Otto</td>
+							<th scope="row" th:text="${plato.id}">Id</th>
+							<td th:text="${plato.descripcion}">Mark</td>
+							<td th:text="${plato.precio}">Otto</td>
 							<td>
-								<a th:href="@{ '/pedido/info/' + ${pedido.id} }" class="btn btn-info"> 
+								<a th:href="@{ '/plato/info/' + ${plato.id} }" class="btn btn-info"> 
 									<i class="fas fa-info"></i> 
 								</a>
-								<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{ '/pedido/edit/' + ${pedido.id} }" class="btn btn-warning"> 
+								<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{ '/plato/edit/' + ${plato.id} }" class="btn btn-warning"> 
 									<i class="fas fa-edit"></i> 
 								</a>
-								<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{ '/pedido/del/' + ${pedido.id} }" class="btn btn-danger"> 
+								<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{ '/plato/del/' + ${plato.id} }" class="btn btn-danger"> 
 									<i class="fas fa-trash-alt"></i> 
 								</a>							
 							</td>
@@ -48,7 +48,7 @@
 
 			</div>
 			<div sec:authorize="hasRole('ROLE_ADMIN')" class="card-footer text-muted">
-				<a th:href="@{/pedido/nuevo}" class="btn btn-primary"><i class="fas fa-file-alt"></i> Nuevo Pedido</a>
+				<a th:href="@{/plato/nuevo}" class="btn btn-primary"><i class="fas fa-file-alt"></i> Nuevo plato</a>
 			</div>
 		</div>
 

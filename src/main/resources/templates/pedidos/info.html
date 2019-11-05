@@ -18,6 +18,14 @@
 			
 			
 				<form>
+				
+				  <div class="form-group row">
+				    <label for="id" class="col-sm-2 col-form-label">ID :</label>
+				    <div class="col-sm-10">
+				      <input type="text" readonly th:value="${pedido.id}" class="form-control-plaintext" >
+				    </div>
+				  </div>
+				  
 				  <div class="form-group row">
 				    <label for="nombre" class="col-sm-2 col-form-label">Descripcion:</label>
 				    <div class="col-sm-10">
@@ -26,17 +34,12 @@
 				  </div>				  
 				  
 				  <div class="form-group row">
-				    <label for="plato" class="col-sm-2 col-form-label">Plato :</label>
+				    <label for="personal" class="col-sm-2 col-form-label">Personal :</label>
 				    <div class="col-sm-10">
-				      <input type="text" readonly th:value="${pedido.plato.nombre}" class="form-control-plaintext" >
+				      <input type="text" readonly th:value="${pedido.personal.nombre}" class="form-control-plaintext" >
 				    </div>
 				  </div>
-				  <div class="form-group row">
-				    <label for="id" class="col-sm-2 col-form-label">ID :</label>
-				    <div class="col-sm-10">
-				      <input type="text" readonly th:value="${pedido.id}" class="form-control-plaintext" >
-				    </div>
-				  </div>
+				
 				  
 				  </div>
 				</form>
@@ -44,12 +47,10 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th scope="col">#</th>
-							<th scope="col">Descripcion</th>
-							<th scope="col">Plato</th>
 							<th scope="col">Id</th>
+							<th scope="col">Descripcion</th>
+							<th scope="col">Precio</th>
 							
-							<th scope="col"></th>
 						</tr>
 					</thead>
 					<tbody th:each="plato: ${pedido.plato}">
@@ -74,10 +75,8 @@
 
 			</div>
 			<div class="card-footer text-muted">
-				<a th:href="@{/medico}" class="btn btn-success"><i class="fas fa-file-alt"></i> Ver Pedido</a>
-				<a th:href="@{'/medico/' + ${medico.id} + '/nuevopaciente/'}" 
-					class="btn btn-primary">
-					<i class="fas fa-file-alt"></i> Nuevo pedido</a>
+				<a th:href="@{/pedido}" class="btn btn-success"><i class="fas fa-file-alt"></i> Ver Pedido</a>
+					
 			</div>
 		</div>
 

@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.upn.restaurant.model.entity.Pedido;
+
 import com.upn.restaurant.model.entity.Plato;
-import com.upn.restaurant.service.PedidoService;
 import com.upn.restaurant.service.PlatoService;
 
 
@@ -23,27 +22,22 @@ import com.upn.restaurant.service.PlatoService;
 
 @Controller
 @RequestMapping("/plato")
-@SessionAttributes( {"plato", "pedido" } )
-public class PedidoController {
+@SessionAttributes( {"plato"} )
+public class PlatoController {
 
-	
+	@Autowired
 	private PlatoService platoService;
 	
-	
-	private PedidoService pedidoService;
-	
-	@Autowired
-	//private PacienteService pacienteService;
 	
 	@GetMapping
 	public String inicio(Model model) {
 		try {
 			List<Plato> platos = platoService.findAll();
-			model.addAttribute("Plato", platos);
+			model.addAttribute("platos", platos);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return "/pedido/inicio";
+		return "/plato/inicio";
 	}
 	
 	@GetMapping("/edit/{id}")
@@ -63,7 +57,7 @@ public class PedidoController {
 			// TODO: handle exception
 		}
 		
-		return "/pedido/edit";
+		return "/plato/edit";
 	}
 	@PostMapping("/save")
 	public String save(@ModelAttribute("cliente") Plato plato, 
@@ -79,80 +73,51 @@ public class PedidoController {
 	}
 	@GetMapping("/nuevo")
 	public String nuevo(Model model) {
-		Plato platos = new Plato();
-		model.addAttribute("plato", platos);
+		Plato plato = new Plato();
+		model.addAttribute("plato", plato);
 		try {
-			List<Plato> listaPlatos = 
+			List<Plato> platos = 
 					platoService.findAll();
-			model.addAttribute("plato", listaPlatos);
+			model.addAttribute("platos", platos);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return "/platos/nuevo";
+		return "/plato/nuevo";
 	}
 	@GetMapping("/del/{id}")
 	public String eliminar(@PathVariable("id") int id, Model model) {
 		try {
-			Optional<Pedido> pedidos = pedidoService.findById(id);
-			if(pedidos.isPresent()) {
-				pedidoService.deleteById(id);
+			Optional<Plato> platos = platoService.findById(id);
+			if(platos.isPresent()) {
+				platoService.deleteById(id);
 			}
 		} catch (Exception e) {
 			
 			model.addAttribute("dangerDel", "ERROR - Violación contra el principio de Integridad referencia");
 			try {
-				List<Pedido> pedidos = pedidoService.findAll();
-				model.addAttribute("pedido", pedidos);
+				List<Plato> platos = platoService.findAll();
+				model.addAttribute("plato", platos);
 			} catch (Exception e2) {
 				// TODO: handle exception
 			} 
-			return "/pedido/inicio";
+			return "/plato/inicio";
 		}
-		return "redirect:/pedido";
+		return "redirect:/plato";
 	}@GetMapping("/info/{id}")
 	public String info(@PathVariable("id") int id, Model model) {
 		try {
-			Optional<Pedido> pedido = pedidoService.findById(id);
-			if(pedido.isPresent()) {
-				model.addAttribute("pedido", pedido.get());
+			Optional<Plato> plato = platoService.findById(id);
+			if(plato.isPresent()) {
+				model.addAttribute("plato", plato.get());
 			} else {
-				return "redirect:/pedido";
+				return "redirect:/plato";
 			}
 		} catch (Exception e) {
 
 		}	
 		
-		return "/pedido/info";
+		return "/plato/info";
 	}
 	
-	@GetMapping("/{id}/nuevoplato")
-	public String nuevoPlato(@PathVariable("id") int id, Model model) {
-		Plato plato = new Plato();
-		try {
-			Optional<Pedido> pedido = pedidoService.findById(id);
-			if(pedido.isPresent()) {
-				plato.setPedido(pedido.get());
-				model.addAttribute("plato", plato);
-			} else {
-				return "redirect:/pedido";
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return "/pedido/nuevoplato";
-	}
-	
-	@PostMapping("/saveplato")
-	public String savePlato(@ModelAttribute("plato") Plato plato, 
-			Model model, SessionStatus status) {
-		try {
-			platoService.save(plato);
-			status.setComplete();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return "redirect:/pedido/info/" + plato.getPedido().getId();
-	}
 	
 }

@@ -22,7 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	private UsuarioDetailsService usuarioDetailsService;
 
 	@Autowired
-	private LogginAccessDeniedHandler accessDeniedHandler;
+	private LoggingAccessDeniedHandler accessDeniedHandler;
 
 
 	@Override

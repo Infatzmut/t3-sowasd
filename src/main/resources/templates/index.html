@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace = "layout/layout :: head"></head>
 <body>
-	<h1>Hello world</h1>
+<header th:replace = "layout/layout :: header"></header>
+
+<div class = "container">
+
+	<h1>Hospital index</h1>
+	
+</div>
+
+<footer th:replace = "layout/layout :: footer"></footer>
 </body>
 </html>
